@@ -16,6 +16,7 @@ public class CharacterScrip : MonoBehaviour
     void Update()
     {
         MoveCharacter();
+        //RotateCharacter();
     }
 
     void MoveCharacter()
@@ -26,5 +27,15 @@ public class CharacterScrip : MonoBehaviour
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         characterController.SimpleMove(direction * speed);
+    }
+
+    void RotateCharacter()
+    {
+        float mousePositionX = Input.GetAxisRaw("Mouse X");
+        float mousePositionY = Input.GetAxisRaw("Mouse Y");
+        
+        //Vector3 direction = new Vector3(mousePositionX, 0, mousePositionY);
+
+        transform.rotation = Quaternion.Euler(mousePositionX, mousePositionY, 0f);
     }
 }
