@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MagnetScript : MonoBehaviour
 {
-    
+    public GameObject LinePrefab;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             ActivateMagnet();
         }
+    }
+
+    private void Start()
+    {
+
     }
 
     void ActivateMagnet()
@@ -22,11 +28,12 @@ public class MagnetScript : MonoBehaviour
         {
             if (c.GetComponent<Rigidbody>())
             {
+                //Instantiate(LinePrefab) ;
+                //LinePrefab.GetComponent<LineScipt>().GetNewPositions(transform.position, c.transform.position);
                 Vector3 distanceFromMagnetable = (c.transform.position - transform.position) * 100;
                 c.GetComponent<Rigidbody>().AddForce(-distanceFromMagnetable);
-            }
 
+            }
         }
-        
     }
 }
