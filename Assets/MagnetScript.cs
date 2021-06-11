@@ -7,15 +7,18 @@ public class MagnetScript : MonoBehaviour
 {
     public GameObject LinePrefab;
     private float timeMagnet = 3f;
+    private Rigidbody rb;
 
     private void Start()
     {
         timeMagnet = 10f;
+        rb = GetComponent<Rigidbody>();
     }
 
     public void ActivateMagnet()
     {
         timeMagnet = 0;
+        rb.isKinematic = true;
     }
 
     private void Update()
@@ -29,13 +32,15 @@ public class MagnetScript : MonoBehaviour
             {
                 if (c.GetComponent<Rigidbody>())
                 {
-                    //Instantiate(LinePrefab) ;
-                    //LinePrefab.GetComponent<LineScipt>().GetNewPositions(transform.position, c.transform.position);
                     Vector3 distanceFromMagnetable = (c.transform.position - transform.position) * 100;
                     c.GetComponent<Rigidbody>().AddForce(-distanceFromMagnetable);
 
                 }
             }
+        }
+        else
+        {
+            rb.isKinematic = false;
         }
     }
 }
