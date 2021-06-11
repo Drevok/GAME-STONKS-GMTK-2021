@@ -10,10 +10,7 @@ public class MagnetScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            ActivateMagnet();
-        }
+        
     }
 
     private void Start()
@@ -21,7 +18,7 @@ public class MagnetScript : MonoBehaviour
 
     }
 
-    void ActivateMagnet()
+    public void ActivateMagnet()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, 4f);
         foreach (Collider c in colliders)

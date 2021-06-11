@@ -12,4 +12,17 @@ public class LaserScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.AddForce(0, 0, laserSpeed);
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (!other.collider.CompareTag("Player"))
+        {
+            if (other.collider.GetComponent<MagnetScript>())
+            {
+                other.collider.GetComponent<MagnetScript>().ActivateMagnet();
+            }
+
+            Destroy(gameObject);
+        }
+    }
 }

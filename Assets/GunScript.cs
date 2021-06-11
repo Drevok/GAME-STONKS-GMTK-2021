@@ -7,6 +7,7 @@ public class GunScript : MonoBehaviour
 {
     public GameObject laserPrefab;
     public float launchSpeed = 100f;
+    public GameObject shootPoint;
 
     // Update is called once per frame
     void Update()
@@ -26,7 +27,7 @@ public class GunScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject bullet = Instantiate(laserPrefab, transform.position,transform.rotation);
+            GameObject bullet = Instantiate(laserPrefab, shootPoint.transform.position, shootPoint.transform.rotation);
         }
     }
 }
