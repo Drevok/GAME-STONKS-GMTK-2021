@@ -12,8 +12,15 @@ public class TourelleScript : MonoBehaviour
 
     public GameObject cannon;
 
+    public bool canShoot = true;
+
     private State _currentState;
-    
+
+    private void Start()
+    {
+        canShoot = true;
+    }
+
     private enum State
     {
         Idle,
@@ -36,12 +43,14 @@ public class TourelleScript : MonoBehaviour
                 DecideToChange();
                 break;
             case State.Shooting:
-                Shoot();
+                DecideToChange();
+                CheckDistanceFromPlayer();
+                InitializeShoot();
                 break;
             case State.Stunned:
                 break;
-
         }
+        
     }
 
     void CheckDistanceFromPlayer()
@@ -60,6 +69,13 @@ public class TourelleScript : MonoBehaviour
         {
             _currentState = State.Idle;
         }
+
+        if (distanceFromPlayer <= range && canShoot)
+        {
+            Debug.Log("Je passe en phase de tir");
+            canShoot = false;
+            _currentState = State.Shooting;
+        }
     }
 
     void DetectingPlayer()
@@ -67,10 +83,34 @@ public class TourelleScript : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(player.transform.localPosition - transform.position);
         //cannon.transform.rotation = Quaternion.Lerp(cannon.transform.localRotation, targetRotation, 5f);
         cannon.transform.rotation = targetRotation;
+        
+    }
+
+    void InitializeShoot()
+    {
+        
+        Debug.Log("J'initialise un tir");
+        StartCoroutine(ShootTimer());
+    }
+
+    IEnumerator ShootTimer()
+    {
+        Debug.Log("Je commence à tirer");
+        yield return new WaitForSeconds(3f);
+        Shoot();
+        yield return null;
     }
 
     void Shoot()
     {
-        
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.forward, out hit))
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
+                Debug.Log("J'ai touché le joueur");
+            }
+        }
     }
+    
 }
