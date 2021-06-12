@@ -7,19 +7,40 @@ public class LaserScript : MonoBehaviour
 {
     private Rigidbody rb;
     public float laserSpeed = 1000f;
+    public GunScript GunScript;
+
+    private float timeShot;
     private void Start()
     {
+        timeShot = 0;
         rb = GetComponent<Rigidbody>();
+        GunScript = FindObjectOfType<GunScript>();
         rb.AddForce(0, 0, laserSpeed);
+    }
+
+    private void FixedUpdate()
+    {
+        timeShot += Time.deltaTime;
+
+        if (timeShot >= 10)
+        {
+            GunScript.isShotFired = false;
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision other)
     {
         if (!other.collider.CompareTag("Player"))
         {
-            if (other.collider.GetComponent<MagnetScript>())
+            if (other.collider.CompareTag("Magnetable"))
             {
                 other.collider.GetComponent<MagnetScript>().ActivateMagnet();
+            }
+
+            else
+            {
+                GunScript.isShotFired = false;
             }
 
             Destroy(gameObject);
