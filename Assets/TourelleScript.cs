@@ -50,7 +50,7 @@ public class TourelleScript : MonoBehaviour
             case State.Stunned:
                 break;
         }
-        
+
     }
 
     void CheckDistanceFromPlayer()
@@ -72,7 +72,6 @@ public class TourelleScript : MonoBehaviour
 
         if (distanceFromPlayer <= range && canShoot)
         {
-            Debug.Log("Je passe en phase de tir");
             canShoot = false;
             _currentState = State.Shooting;
         }
@@ -88,14 +87,11 @@ public class TourelleScript : MonoBehaviour
 
     void InitializeShoot()
     {
-        
-        Debug.Log("J'initialise un tir");
         StartCoroutine(ShootTimer());
     }
 
     IEnumerator ShootTimer()
     {
-        Debug.Log("Je commence à tirer");
         yield return new WaitForSeconds(3f);
         Shoot();
         yield return null;
@@ -104,8 +100,10 @@ public class TourelleScript : MonoBehaviour
     void Shoot()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.forward, out hit))
+        Debug.DrawRay(transform.position, Vector3.forward);
+        if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit))
         {
+            Debug.Log(hit.collider.name);
             if (hit.collider.CompareTag("Player"))
             {
                 Debug.Log("J'ai touché le joueur");
