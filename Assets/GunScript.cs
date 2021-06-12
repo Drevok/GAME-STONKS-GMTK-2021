@@ -12,7 +12,7 @@ public class GunScript : MonoBehaviour
     public GameObject shootPoint;
     public bool isShotFired;
 
-    private Vector2 mousePos;
+    private Vector3 mousePos;
 
     private void Start()
     {
@@ -28,15 +28,16 @@ public class GunScript : MonoBehaviour
     void RotateGun()
     {
         mousePos = _camera.ScreenToViewportPoint(Input.mousePosition);
-
-        transform.rotation = Quaternion.Euler(mousePos.x, 0f, mousePos.y);
+        
+        
+        transform.rotation = Quaternion.Euler(0f, mousePos.x *100, 0f);
     }
 
     void ShootLaser()
     {
         if (Input.GetKeyDown(KeyCode.Space) && !isShotFired)
         {
-            GameObject bullet = Instantiate(laserPrefab, shootPoint.transform.position, shootPoint.transform.rotation);
+            GameObject bullet = Instantiate(laserPrefab, shootPoint.transform.position, shootPoint.transform.localRotation);
             isShotFired = true;
         }
     }

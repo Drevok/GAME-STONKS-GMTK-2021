@@ -15,7 +15,11 @@ public class LaserScript : MonoBehaviour
         timeShot = 0;
         rb = GetComponent<Rigidbody>();
         GunScript = FindObjectOfType<GunScript>();
-        rb.AddForce(0, 0, laserSpeed);
+        Vector3 bulletFront;
+        bulletFront.x = GunScript.transform.forward.x;
+        bulletFront.z = GunScript.transform.forward.z;
+        bulletFront.y = 0f;
+        rb.AddForce(bulletFront * 1000);
     }
 
     private void FixedUpdate()
