@@ -107,6 +107,7 @@ public class TourelleScript : MonoBehaviour
             if (hit.collider.CompareTag("Player"))
             {
                 Debug.Log("J'ai touché le joueur");
+                player.GetComponent<CharacterScrip>().Die();
             }
         }
     }

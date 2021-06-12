@@ -28,8 +28,7 @@ public class GunScript : MonoBehaviour
     void RotateGun()
     {
         mousePos = _camera.ScreenToViewportPoint(Input.mousePosition);
-        
-        
+
         transform.rotation = Quaternion.Euler(0f, mousePos.x *100, 0f);
     }
 

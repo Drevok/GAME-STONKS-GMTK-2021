@@ -1462,7 +1462,7 @@ GameObject:
   - component: {fileID: 963194226}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: Player
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2621,15 +2621,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4341280487739932283, guid: edd752f2592e8fa4f9b786dd68b6eef7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.88
+      value: 2.65
       objectReference: {fileID: 0}
     - target: {fileID: 4341280487739932283, guid: edd752f2592e8fa4f9b786dd68b6eef7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2591937
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 4341280487739932283, guid: edd752f2592e8fa4f9b786dd68b6eef7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.9
+      value: 5.22
       objectReference: {fileID: 0}
     - target: {fileID: 4341280487739932283, guid: edd752f2592e8fa4f9b786dd68b6eef7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2667,5 +2667,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 365173818}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5920366811820045683, guid: edd752f2592e8fa4f9b786dd68b6eef7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: edd752f2592e8fa4f9b786dd68b6eef7, type: 3}

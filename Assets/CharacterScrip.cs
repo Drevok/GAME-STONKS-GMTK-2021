@@ -38,4 +38,9 @@ public class CharacterScrip : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(mousePositionX, mousePositionY, 0f);
     }
+
+    public void Die()
+    {
+        gameObject.SetActive(false);
+    }
 }
