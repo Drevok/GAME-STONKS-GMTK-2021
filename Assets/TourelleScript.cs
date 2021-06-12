@@ -68,6 +68,7 @@ public class TourelleScript : MonoBehaviour
         if (distanceFromPlayer > range)
         {
             StopAllCoroutines();
+            canShoot = true;
             _currentState = State.Idle;
         }
 
@@ -93,7 +94,7 @@ public class TourelleScript : MonoBehaviour
 
     IEnumerator ShootTimer()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         Shoot();
         yield return null;
     }
