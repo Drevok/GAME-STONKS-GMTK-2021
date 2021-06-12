@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1097106036106378345}
   - component: {fileID: -3328047192989480661}
   - component: {fileID: 9184662188302704864}
+  - component: {fileID: 5086282407845532987}
   m_Layer: 0
   m_Name: MurType3B
   m_TagString: Untagged
@@ -62,6 +63,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &5086282407845532987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320429076252649171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3cc22d19725304ca7abcb90c6c35b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinePrefab: {fileID: 0}
 --- !u!1 &5596471346625958991
 GameObject:
   m_ObjectHideFlags: 0

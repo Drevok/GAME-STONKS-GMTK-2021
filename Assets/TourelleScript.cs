@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.UI;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class TourelleScript : MonoBehaviour
 {
@@ -10,18 +11,21 @@ public class TourelleScript : MonoBehaviour
     public float range;
     private float distanceFromPlayer;
 
+    public GameObject pointLight;
+
     public GameObject cannon;
 
     public bool canShoot = true;
 
-    private State _currentState;
+    public State _currentState;
 
     private void Start()
     {
         canShoot = true;
+        pointLight.SetActive(false);
     }
 
-    private enum State
+    public enum State
     {
         Idle,
         Detecting,
@@ -34,20 +38,27 @@ public class TourelleScript : MonoBehaviour
         switch (_currentState)
         {
             case State.Idle:
+                pointLight.SetActive(false);
                 CheckDistanceFromPlayer();
                 DecideToChange();
                 break;
             case State.Detecting:
+                pointLight.SetActive(true);
                 DetectingPlayer();
                 CheckDistanceFromPlayer();
                 DecideToChange();
                 break;
             case State.Shooting:
+                pointLight.SetActive(true);
                 DecideToChange();
                 CheckDistanceFromPlayer();
                 InitializeShoot();
                 break;
             case State.Stunned:
+                pointLight.SetActive(false);
+                canShoot = false;
+                StopCoroutine(ShootTimer());
+                StartCoroutine(WaitForStun());
                 break;
         }
 
@@ -101,17 +112,27 @@ public class TourelleScript : MonoBehaviour
 
     void Shoot()
     {
-        RaycastHit hit;
-        Debug.DrawRay(transform.position, Vector3.forward);
-        if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit))
+        if (canShoot)
         {
-            Debug.Log(hit.collider.name);
-            if (hit.collider.CompareTag("Player"))
+            RaycastHit hit;
+            Debug.DrawRay(transform.position, Vector3.forward);
+            if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit))
             {
-                Debug.Log("J'ai touché le joueur");
-                player.GetComponent<CharacterScrip>().Die();
+                Debug.Log(hit.collider.name);
+                if (hit.collider.CompareTag("Player"))
+                {
+                    Debug.Log("J'ai touché le joueur");
+                    player.GetComponent<CharacterScrip>().Die();
+                }
             }
         }
+    }
+
+    IEnumerator WaitForStun()
+    {
+        yield return new WaitForSeconds(3f);
+        _currentState = State.Shooting;
+        yield return null;
     }
     
 }

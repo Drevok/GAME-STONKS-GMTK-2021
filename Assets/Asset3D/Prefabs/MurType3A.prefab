@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8399034262789172705}
   - component: {fileID: 8399034262789172704}
   - component: {fileID: 5420211738560155055}
-  - component: {fileID: -2906282598575718861}
   - component: {fileID: -3777462881861293550}
+  - component: {fileID: 794286057544179088}
   m_Layer: 0
   m_Name: MurType3A
   m_TagString: Untagged
@@ -97,19 +97,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1210.3516, y: 642.1238, z: 329.99203}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-2906282598575718861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8399034262789172718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac3cc22d19725304ca7abcb90c6c35b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LinePrefab: {fileID: 0}
 --- !u!54 &-3777462881861293550
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -126,3 +113,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &794286057544179088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8399034262789172718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3cc22d19725304ca7abcb90c6c35b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinePrefab: {fileID: 0}

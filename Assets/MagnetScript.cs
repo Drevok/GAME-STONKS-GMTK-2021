@@ -49,8 +49,13 @@ public class MagnetScript : MonoBehaviour
                     {
                         Vector3 distanceFromMagnetable = (c.transform.position - transform.position) * 100;
                         c.GetComponent<Rigidbody>().AddForce(-distanceFromMagnetable);
+
+                        if (c.GetComponent<TourelleScript>())
+                        {
+                            c.GetComponent<TourelleScript>()._currentState = TourelleScript.State.Stunned;
+                        }
                     }
-                    
+
                 }
             }
         }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2867238578273095337}
   - component: {fileID: -4887342574018070672}
   - component: {fileID: -5131370199460832768}
+  - component: {fileID: -1966178916015889918}
   m_Layer: 0
   m_Name: Etagere1
   m_TagString: Untagged
@@ -126,3 +127,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &-1966178916015889918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445885873942118051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3cc22d19725304ca7abcb90c6c35b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinePrefab: {fileID: 0}
