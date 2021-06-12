@@ -16,7 +16,7 @@ public class GunScript : MonoBehaviour
 
     private void Start()
     {
-        //_camera = Camera.main;
+        
     }
 
     void Update()
@@ -35,7 +35,7 @@ public class GunScript : MonoBehaviour
 
     void ShootLaser()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isShotFired)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isShotFired)
         {
             GameObject bullet = Instantiate(laserPrefab, shootPoint.transform.position, shootPoint.transform.localRotation);
             isShotFired = true;

@@ -8,6 +8,7 @@ public class TourelleScript : MonoBehaviour
 {
     public Transform player;
     public float range;
+    private float distanceFromPlayer;
 
     public GameObject cannon;
 
@@ -27,9 +28,12 @@ public class TourelleScript : MonoBehaviour
         {
             case State.Idle:
                 CheckDistanceFromPlayer();
+                DecideToChange();
                 break;
             case State.Detecting:
                 DetectingPlayer();
+                CheckDistanceFromPlayer();
+                DecideToChange();
                 break;
             case State.Shooting:
                 Shoot();
@@ -42,17 +46,27 @@ public class TourelleScript : MonoBehaviour
 
     void CheckDistanceFromPlayer()
     {
-        float distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position);
+        distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position);
+    }
+
+    void DecideToChange()
+    {
         if (distanceFromPlayer <= range)
         {
             _currentState = State.Detecting;
+        }
+
+        if (distanceFromPlayer > range)
+        {
+            _currentState = State.Idle;
         }
     }
 
     void DetectingPlayer()
     {
-        float angle = Mathf.Atan2(player.transform.position.z, player.transform.position.x) * Mathf.Rad2Deg - 90f;
-        cannon.transform.rotation = Quaternion.Lerp(cannon.transform.rotation, angle, 5f);
+        Quaternion targetRotation = Quaternion.LookRotation(player.transform.localPosition - transform.position);
+        //cannon.transform.rotation = Quaternion.Lerp(cannon.transform.localRotation, targetRotation, 5f);
+        cannon.transform.rotation = targetRotation;
     }
 
     void Shoot()
