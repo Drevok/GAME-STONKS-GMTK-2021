@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,21 +6,28 @@ using UnityEngine.UI;
 
 public class GunScript : MonoBehaviour
 {
+    public Camera _camera;
+    
     public GameObject laserPrefab;
-    public float launchSpeed = 100f;
     public GameObject shootPoint;
     public bool isShotFired;
 
-    // Update is called once per frame
+    private Vector2 mousePos;
+
+    private void Start()
+    {
+        //_camera = Camera.main;
+    }
+
     void Update()
     {
-        //RotateGun();
+        RotateGun();
         ShootLaser();
     }
     
     void RotateGun()
     {
-        Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        mousePos = _camera.ScreenToViewportPoint(Input.mousePosition);
 
         transform.rotation = Quaternion.Euler(mousePos.x, 0f, mousePos.y);
     }

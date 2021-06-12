@@ -33,7 +33,7 @@ public class LaserScript : MonoBehaviour
     {
         if (!other.collider.CompareTag("Player"))
         {
-            if (other.collider.CompareTag("Magnetable"))
+            if (other.collider.GetComponent<MagnetScript>())
             {
                 other.collider.GetComponent<MagnetScript>().ActivateMagnet();
             }
