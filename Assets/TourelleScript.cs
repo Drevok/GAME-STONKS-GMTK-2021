@@ -67,6 +67,7 @@ public class TourelleScript : MonoBehaviour
 
         if (distanceFromPlayer > range)
         {
+            StopAllCoroutines();
             _currentState = State.Idle;
         }
 

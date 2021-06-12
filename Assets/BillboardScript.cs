@@ -15,7 +15,7 @@ public class BillboardScript : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.rotation = Quaternion.Euler(_Camera.transform.rotation.x, 0, _Camera.transform.rotation.z);
+        transform.rotation = Quaternion.Euler(_Camera.transform.rotation.x, transform.rotation.y, transform.rotation.z);
         
     }
 }
