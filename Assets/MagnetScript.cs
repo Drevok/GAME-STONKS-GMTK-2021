@@ -45,9 +45,12 @@ public class MagnetScript : MonoBehaviour
             {
                 if (c.GetComponent<Rigidbody>())
                 {
-                    Vector3 distanceFromMagnetable = (c.transform.position - transform.position) * 100;
-                    c.GetComponent<Rigidbody>().AddForce(-distanceFromMagnetable);
-
+                    if(c.CompareTag("Magnetable"))
+                    {
+                        Vector3 distanceFromMagnetable = (c.transform.position - transform.position) * 100;
+                        c.GetComponent<Rigidbody>().AddForce(-distanceFromMagnetable);
+                    }
+                    
                 }
             }
         }
