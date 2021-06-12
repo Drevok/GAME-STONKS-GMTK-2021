@@ -6,26 +6,39 @@ using UnityEngine;
 public class MagnetScript : MonoBehaviour
 {
     public GameObject LinePrefab;
-    private float timeMagnet = 3f;
+    private bool canMagnet;
     private Rigidbody rb;
+
+    private GunScript gunScript;
 
     private void Start()
     {
-        timeMagnet = 10f;
+        canMagnet = false;
         rb = GetComponent<Rigidbody>();
+        gunScript = FindObjectOfType<GunScript>();
     }
 
     public void ActivateMagnet()
     {
-        timeMagnet = 0;
+        canMagnet = true;
+        StartCoroutine(WaitToShoot());
         rb.isKinematic = true;
+    }
+
+    IEnumerator WaitToShoot()
+    {
+         yield return new WaitForSeconds(3f);
+         Debug.Log("ça fait trois secondes");
+         canMagnet = false;
+        gunScript.isShotFired = false;
+        yield return null;
     }
 
     private void Update()
     {
-        if (timeMagnet <= 3f)
+        if (canMagnet)
         {
-            timeMagnet = timeMagnet + Time.deltaTime;
+            //timeMagnet = timeMagnet + Time.deltaTime;
             
             Collider[] colliders = Physics.OverlapSphere(transform.position, 4f);
             foreach (Collider c in colliders)
