@@ -19,6 +19,8 @@ public class TourelleScript : MonoBehaviour
 
     public State _currentState;
 
+    public LineRenderer lineRenderer;
+
     private void Start()
     {
         canShoot = true;
@@ -112,19 +114,21 @@ public class TourelleScript : MonoBehaviour
 
     void Shoot()
     {
-        if (canShoot)
-        {
+        //if (canShoot)
+        //{
             RaycastHit hit;
             Debug.DrawRay(transform.position, Vector3.forward);
             if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit))
             {
+                lineRenderer.SetPosition(0, cannon.transform.position);
+                lineRenderer.SetPosition(1, hit.transform.position);
                 Debug.Log(hit.collider.name);
                 if (hit.collider.CompareTag("Player"))
                 {
                     Debug.Log("J'ai touché le joueur");
                     player.GetComponent<CharacterScrip>().Die();
                 }
-            }
+            //}
         }
     }
 
