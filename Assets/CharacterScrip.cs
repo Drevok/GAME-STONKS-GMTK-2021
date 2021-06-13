@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterScrip : MonoBehaviour
 {
@@ -41,6 +42,6 @@ public class CharacterScrip : MonoBehaviour
 
     public void Die()
     {
-        gameObject.SetActive(false);
+        SceneManager.LoadScene("MenuScene");
     }
 }
