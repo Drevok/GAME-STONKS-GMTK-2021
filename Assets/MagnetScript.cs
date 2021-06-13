@@ -11,6 +11,7 @@ public class MagnetScript : MonoBehaviour
 
     private GunScript gunScript;
     
+    public List<GameObject> objectsMagnetized = new List<GameObject>();
     public List<GameObject> lineList = new List<GameObject>();
 
     private void Start()
@@ -33,11 +34,14 @@ public class MagnetScript : MonoBehaviour
          Debug.Log("ça fait trois secondes");
          canMagnet = false;
          gunScript.isShotFired = false;
+         
          foreach (GameObject line in lineList)
          {
              line.GetComponent<LineScipt>().Die();
-             lineList.Remove(line);
+             //lineList.Remove(line);
          }
+         
+         objectsMagnetized.Clear();
         yield return null;
     }
 
@@ -56,16 +60,20 @@ public class MagnetScript : MonoBehaviour
                     {
                         Vector3 distanceFromMagnetable = (c.transform.position - transform.position) * 100;
                         c.GetComponent<Rigidbody>().AddForce(-distanceFromMagnetable);
-                        var line = Instantiate(LinePrefab);
-                        lineList.Add(line);
-                        line.GetComponent<LineScipt>().GetNewPositions(transform.position, c.transform.position);
-
                         if (c.GetComponent<TourelleScript>())
                         {
                             c.GetComponent<TourelleScript>()._currentState = TourelleScript.State.Stunned;
                         }
                     }
                 }
+            }
+
+            foreach (GameObject objectMagnetized in objectsMagnetized)
+            {
+                var line = Instantiate(LinePrefab);
+                lineList.Add(line);
+                line.GetComponent<LineScipt>().GetNewPositions(transform.position, objectMagnetized.transform.position);
+
             }
         }
         else
